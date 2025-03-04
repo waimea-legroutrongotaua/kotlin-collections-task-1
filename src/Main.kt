@@ -77,7 +77,7 @@ fun main() {
     println("Longest Name: ${longestMonkeyName(monkeys)}")
 
     // Check the list
-    check(monkeys.count() == 0)
+    check(monkeys.count() == 4)
     check(monkeyCounter(monkeys) == "There are 4 monkeys!")
 
     // Try to delete 10 monkeys
@@ -91,7 +91,7 @@ fun main() {
     println("Longest Name: ${longestMonkeyName(monkeys)}")
 
     // Check the list
-    check(monkeys.count() == 4)
+    check(monkeys.count() == 0)
     check(monkeyCounter(monkeys) == "There are no monkeys!")
 }
 
@@ -106,11 +106,15 @@ fun main() {
  * etc.
  */
 fun showMonkeys(monkeyList: List<String>) {
+
+    val monkeys = mutableListOf<String>()
     println("Monkey List")
     println("-------------------")
 
     // Loop through the given list and show each monkey
-    println(monkeyList)   // FIXME: Remove this line and add your code
+    for ((i, name) in monkeyList.withIndex()) {
+        println("Monkey ${i + 1}: $name")
+    }// FIXME: Remove this line and add your code
 }
 
 
@@ -120,11 +124,18 @@ fun showMonkeys(monkeyList: List<String>) {
  */
 fun getNewMonkey(monkeyList: MutableList<String>) {
     // Ask the user for a monkey name (no blanks)
+    print("Enter your 1st monkeys name: ")
+    val First = readln()
+    print("Enter your 2nd monkeys name: ")
+    val Second = readln()
+    print("Enter your 3rd monkeys name: ")
+    val Third = readln()
 
     // Add the name to the list
-
+    monkeyList.add("$First $Second $Third")
     // Show some feedback
-    println("Added new monkey: NAME HERE")
+    println("Added new monkeys:$First $Second $Third")
+    println(monkeyList)
 }
 
 
@@ -137,7 +148,9 @@ fun getNewMonkey(monkeyList: MutableList<String>) {
  */
 fun monkeyCounter(monkeyList: List<String>): String {
     // return the number of monkeys in the list
-    return "MONKEY COUNT MESSAGE"   // FIXME!
+
+    val numMonkeys = monkeyList.size
+    return ("There are $numMonkeys monkeys!")
 }
 
 
@@ -146,7 +159,13 @@ fun monkeyCounter(monkeyList: List<String>): String {
  */
 fun longestMonkeyName(monkeyList: List<String>): String {
     // Loop through the list and find the longest name
-    return "MONKEY NAME HERE"   // FIXME!
+    var longestWord = ""
+    for (name in monkeyList)
+        if (name.length > longestWord.length) {
+            longestWord = name
+        }
+    return longestWord
+// FIXME!
 }
 
 
@@ -158,7 +177,9 @@ fun deleteFirstMonkey(monkeyList: MutableList<String>) {
     // Remove the first one from the list
 
     // Show some feedback
-    println("Removing monkey: NAME HERE")
+    println(monkeyList[0])
+    monkeyList.removeAt(0)
+    println("The monkey has been Removed ")
 }
 
 
@@ -170,6 +191,8 @@ fun deleteLastMonkey(monkeyList: MutableList<String>) {
     // Remove the last one from the list
 
     // Show some feedback
-    println("Removing monkey: NAME HERE")
+    println(monkeyList[2])
+    monkeyList.removeAt(2)
+    println("The monkey has been Removed ")
 }
 
